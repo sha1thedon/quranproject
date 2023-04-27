@@ -9,7 +9,7 @@ function App() {
   return (
 
     <div>
-      <h1>Quran App</h1>
+      <h2>Quran App</h2>
       <Quran selectedSurah={selectedSurah} setSelectedSurah={setSelectedSurah}/>
       <Sound selectedSurah={selectedSurah} setSelectedSurah={setSelectedSurah}/>
       
