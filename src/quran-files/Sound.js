@@ -20,6 +20,17 @@ const Sound = ({surahNumber, selectedSurah, setSelectedSurah}) => {
           setCurrentIndex(currentIndex + 1);
         }
       }
+
+      // const handleTogglePlay = () => {
+      //   if (isPlaying) {
+      //     audioRef.current.pause();
+      //   } else {
+      //     audioRef.current.play();
+      //   }
+      //   setIsPlaying(!isPlaying);
+      // }
+      
+      
       if (isPlaying){
         if (audioRef.current) {
           audioRef.current.pause();
@@ -46,10 +57,21 @@ const Sound = ({surahNumber, selectedSurah, setSelectedSurah}) => {
           audioRef.current.removeEventListener('ended', handleAudioEnded);
         }
       }}
+     
+
+     
 
     }, [audioUrl, selectedSurah, currentIndex, isPlaying]);
 
-  
+    const handleTogglePlay = () => {
+        if (isPlaying) {
+          audioRef.current.pause();
+        } else {
+          audioRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+      }
+
   
    
     const fetchAudioFile = async () => {
@@ -100,8 +122,8 @@ const Sound = ({surahNumber, selectedSurah, setSelectedSurah}) => {
     }
 
     const handlePause = () => {
-      const audioPlayer = document.getElementById("audio-player");
-      audioPlayer.pause();
+      setIsPlaying(false)
+      
     };
   
     const handleStop = () => {
@@ -125,6 +147,7 @@ const Sound = ({surahNumber, selectedSurah, setSelectedSurah}) => {
         <audio id="audio-player" src={audioUrl} />
         <button onClick={handlePlay}>Play</button>
         <button onClick={handlePause}>Pause</button>
+        
         <button onClick={handleStop}>Stop</button>
       </div>
     );
