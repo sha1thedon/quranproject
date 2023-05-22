@@ -149,6 +149,7 @@ const Sound = ({surahNumber, selectedSurah, setSelectedSurah}) => {
         <button onClick={handlePause}>Pause</button>
         
         <button onClick={handleStop}>Stop</button>
+        
       </div>
     );
 

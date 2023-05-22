@@ -1,7 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import Translation from './Translation'
+import RouteButton from '../components/RouteButton'
+import { useNavigate } from 'react-router-dom'
+import Sound from './Sound'
+import Homepage from '../views/Homepage'
+
 
 const Quran = ({selectedSurah, setSelectedSurah}) => {
+  const navigate = useNavigate()
   const [surahs, setSurahs] = useState([])
   const[ayahs, setAyahs] = useState([])
   const[audioUrl, setAudioUrl] = useState(null)
@@ -99,6 +107,9 @@ const Quran = ({selectedSurah, setSelectedSurah}) => {
   //   })
   //   .catch(error => console.error(error))
  
+  const navigateToTranslation = () => {
+    navigate('/translation')
+  }
 
   return(
     <div>
@@ -120,7 +131,7 @@ const Quran = ({selectedSurah, setSelectedSurah}) => {
       </select>
 
       {selectedSurah && ( 
-        <div>
+        <div >
             <h2>{`Surah ${selectedSurah.englishName}`}</h2>
             <label htmlFor="ayah-select">Select ayah(s) to memorize:</label>
             <select id="ayah-select" multiple value={selectedAyahs} onChange={handleAyahChange}>
@@ -141,6 +152,10 @@ const Quran = ({selectedSurah, setSelectedSurah}) => {
             <audio src={audioUrl} controls autoPlay />
           )}
 
+
+
+    <RouteButton buttonText={'Go to translation'} pageClickHandler={navigateToTranslation}/>
+    
     </div>
 
  )
